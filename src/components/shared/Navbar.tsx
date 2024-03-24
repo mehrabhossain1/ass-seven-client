@@ -4,15 +4,20 @@ import { motion } from "framer-motion";
 import Container from "./Container";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logout } from "../../redux/features/auth/authSlice";
+import { toggleTheme } from "../../redux/features/themeSlice";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
-
+  const { darkMode } = useAppSelector((store) => store.theme);
   const user = useAppSelector((state) => state.auth.user);
 
   const handleLogout = () => {
     dispatch(logout());
     alert("You have been logged out!");
+  };
+
+  const handleToggleTheme = () => {
+    dispatch(toggleTheme());
   };
 
   return (
@@ -39,6 +44,12 @@ const Navbar = () => {
                 Donations
               </Link>
             </motion.div>
+            <button
+              onClick={handleToggleTheme}
+              className="rounded-lg backdrop-blur-[2px] p-1 inline-block"
+            >
+              {darkMode ? <p>Light</p> : <p>Dark</p>}
+            </button>
             {user ? (
               <>
                 <motion.div
