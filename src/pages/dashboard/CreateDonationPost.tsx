@@ -8,7 +8,7 @@ const CreateDonationPost = () => {
   const onFinish = async (values: any) => {
     try {
       const response = await axios.post(
-        "https://l2-b2-frontend-path-assignment-6-server-starter-pack-bmrphrh67.vercel.app/api/v1/donations",
+        "http://localhost:5000/api/v1/donations",
         values
       );
       console.log(response.data);
